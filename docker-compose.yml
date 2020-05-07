@@ -1,0 +1,73 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  config-server:
+    image: evanndeb/config-server:v3
+    restart: always
+    networks:
+      - backend
+
+  eureka-server:
+    image: evanndeb/eureka-server:v3
+    restart: always
+    depends_on:
+      - config-server
+    networks:
+      - backend
+
+  zuul-server:
+    image: evanndeb/zuul-server:v3
+    restart: always
+    depends_on:
+      - config-server
+      - eureka-server
+    networks:
+      - backend
+
+  mysql-server:
+    image: evanndeb/mysql-server:v3
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  mvideo-client:
+    image: evanndeb/mvideo-client:v3
+    restart: always
+    depends_on:
+      - config-server
+      - eureka-server
+      - mysql-server
+    networks:
+      - backend
+
+  clientui-client:
+    image: evanndeb/clientui-client:v3
+    restart: always
+    depends_on:
+      - config-server
+      - eureka-server
+      - mvideo-client
+    ports:
+      - 8080:8080
+    networks :
+      - backend
+
+  springadmin-server:
+    image: evanndeb/springadmin-server:v3
+    restart: always
+    depends_on:
+      - config-server
+      - eureka-server
+      - clientui-client
+    ports:
+      - 9105:9105
+    networks :
+      - backend
+
+networks:
+  backend:
+
