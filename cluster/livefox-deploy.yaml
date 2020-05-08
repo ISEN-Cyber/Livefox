@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: livefox-deploy
+        labels:
+                app: livefox
+spec:
+        replicas: 1
+        selector:
+                matchLabels:
+                        app: livefox
+        template:
+                metadata:
+                        labels:
+                                app: livefox
+                        annotations:
+                                io.kubernetes.cri.untrusted-workload: "true"
+                spec:
+                        containers:
+                                - name: livefox-pv-container
+                                  image: neopix/livefox:litev2
+                                  ports:
+                                          - containerPort: 80
+                                  volumeMounts:
+                                          - mountPath: "/var/www/html/upl_enc/"
+                                            name: livefox-pv-storage
+                        volumes:
+                                - name: livefox-pv-storage
+                                  persistentVolumeClaim:
+                                            claimName: livefox-pv-claim

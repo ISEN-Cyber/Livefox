@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: livefox-pv-pod
+spec:
+  volumes:
+    - name: livefox-pv-storage
+      persistentVolumeClaim:
+        claimName: livefox-pv-claim
+  containers:
+    - name: livefox-pv-container
+      image: neopix/livefox:litev2
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - mountPath: "/var/www/html/upl_enc"
+          name: livefox-pv-storage
+
