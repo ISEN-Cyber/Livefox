@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: livefox-svc
+  labels:
+    app: livefox
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: livefox
+  sessionAffinity: ClientIP
+---
