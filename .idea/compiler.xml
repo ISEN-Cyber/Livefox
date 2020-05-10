@@ -10,7 +10,6 @@
         <module name="config-server" />
         <module name="zuul-server" />
         <module name="springadmin" />
-        <module name="clientui" />
         <module name="video" />
       </profile>
     </annotationProcessing>
