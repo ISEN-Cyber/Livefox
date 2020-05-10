@@ -6,7 +6,7 @@ A good way to connect via ssh to a remote machine is to copy the public key of t
 
 `ssh-keygen`
 
-![](/images/ssh-keygen)
+![](images/ssh-keygen)
 
 Then you can copy the id_rsa.pub into the `$HOME/.ssh/authorized_keys` file.
 
