@@ -1,0 +1,122 @@
+---
+    - hosts: <all in inventory>
+      become: yes
+      become_method: enable
+      tasks:
+        - name: update_cache
+          become: yes
+          become_method: sudo
+          apt: 
+            update_cache: yes
+        - name: Install tables binaries
+          become: yes
+          become_method: sudo
+          apt: 
+            name: "{{ packages }}"
+            state: present
+            update_cache: yes
+          vars:
+            packages:
+              - iptables 
+              - arptables 
+              - ebtables
+              - ipvsadm
+
+        - name: update-alternatives for iptables
+          become: yes
+          become_method: sudo
+          alternatives:
+            name: iptables
+            path: /usr/sbin/iptables-legacy
+
+        - name: update-alternatives for ip6tables
+          become: yes
+          become_method: sudo
+          alternatives:
+            name: ip6tables
+            path: /usr/sbin/ip6tables-legacy 
+
+        - name: update-alternatives for arptables
+          become: yes
+          become_method: sudo
+          alternatives:
+            name: arptables
+            path: /usr/sbin/arptables-legacy
+
+        - name: update-alternatives for ebtables
+          become: yes
+          become_method: sudo
+          alternatives:
+            name: ebtables
+            path: /usr/sbin/ebtables-legacy
+
+        - name: update_cache
+          become: yes
+          become_method: sudo
+          apt: 
+            update_cache: yes
+
+        - name: install vim, apt-transport-https and curl
+          become: yes
+          become_method: sudo
+          apt: 
+            name: "{{ packages }}"
+            state: present
+            update_cache: yes
+          vars:
+            packages:
+              - vim 
+              - apt-transport-https 
+              - curl
+
+        - name: Execute the command in remote shell; curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -.
+          become: yes
+          become_method: sudo
+          shell: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - 
+
+        - apt_repository:
+            repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+            state: present
+            filename: kubernetes
+          become: yes
+          become_method: sudo   
+  
+        - name: Install Kubernetes binaries
+          become: yes
+          become_method: sudo
+          apt: 
+            name: "{{ packages }}"
+            state: present
+            update_cache: yes
+          vars:
+            packages:
+              - kubelet 
+              - kubeadm 
+              - kubectl
+    
+        - name: Execute the command in remote shell; apt-mark hold kubelet kubeadm kubectl.
+          become: yes
+          become_method: sudo
+          shell: apt-mark hold kubelet kubeadm kubectl
+
+        - name: Update all packages to the latest version
+          become: yes
+          become_method: sudo
+          apt:
+            update_cache: yes
+
+        - name: Execute the command in remote shell; sudo dpkg --configure -a.
+          become: yes
+          become_method: sudo
+          shell: dpkg --configure -a
+      
+        - name: Upgrade all packages to the latest version
+          become: yes
+          become_method: sudo
+          apt: 
+            upgrade: dist
+      
+        - name: Reboot the machine with all defaults
+          become: yes
+          become_method: sudo
+          reboot:

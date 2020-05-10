@@ -1,0 +1,38 @@
+---
+    - hosts: <all>
+      become: yes
+      become_method: enable
+      tasks:
+        - name: Create a directory if it does not exist
+          become: yes
+          become_method: enable
+          file:
+            path: /etc/docker
+            state: directory
+            mode: '0755'
+
+        - name: Launch script to change docker daemon to from cgroup to systemd
+          become: yes
+          become_method: sudo
+          script: ./docker_change_daemon.sh
+
+
+        - name: Create directory for systemd docker
+          become: yes
+          become_method: sudo
+          shell: mkdir -p /etc/systemd/system/docker.service.d
+
+        - name: reload systemctl daemon
+          become: yes
+          become_method: sudo
+          shell: systemctl daemon-reload
+
+        - name: restart docker
+          become: yes
+          become_method: sudo
+          shell: systemctl restart docker
+          
+        - name: Execute the command in remote shell; swapoff -a disable swarm for docker.
+          become: yes
+          become_method: sudo
+          shell: swapoff -a

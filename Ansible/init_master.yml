@@ -1,0 +1,156 @@
+---
+    - hosts: <master1 in inventory>
+      become: yes
+      become_method: enable
+      tasks:
+        - name: Update all packages to the latest version
+          become: yes
+          become_method: sudo
+          apt:
+            update_cache: yes
+        
+        - name: Pull images
+          become: yes
+          become_method: sudo
+          shell: kubeadm config images pull
+          ignore_errors: True
+
+        - name: Create key for certs
+          become: yes
+          become_method: sudo
+          shell: kubeadm alpha certs certificate-key > /tmp/certificate_key
+
+        - name: Kubeadm init control 
+          become: yes
+          become_method: sudo
+          shell: kubeadm init --control-plane-endpoint "<IP of master 1>:<port>" --upload-certs --certificate-key $(cat /tmp/certificate_key)
+          ignore_errors: True
+
+        - name: Delete file /tmp/discovery
+          become: yes
+          become_method: sudo
+          file:
+            path: /tmp/master_discovery
+            state: absent
+
+        - name: Delete file /tmp/token
+          become: yes
+          become_method: sudo
+          file:
+            path: /tmp/master_token
+            state: absent
+
+        - name: Generate token and store it in /tmp/master_token on remote
+          become: yes
+          become_method: sudo
+          shell: kubeadm token create > /tmp/master_token
+          ignore_errors: True
+          
+        - name: Generate discovery and store it in /tmp/master_discovery on remote
+          become: yes
+          become_method: sudo
+          shell: openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //' > /tmp/master_discovery
+          ignore_errors: True
+        
+        - name: Fetch master_token
+          fetch: 
+            src: /tmp/master_token
+            dest: /tmp/master_token
+
+        - name: Fetch master_discovery
+          fetch: 
+            src: /tmp/master_discovery
+            dest: /tmp/master_discovery
+        
+        - name: Fetch certificate_key
+          fetch: 
+            src: /tmp/certificate_key
+            dest: /tmp/certificate_key
+
+        - name: Remove the certificate_key
+          become: yes
+          become_method: sudo
+          file:
+            path: /tmp/certificate_key
+            state: absent
+
+        - name: Create a directory if it does not exist
+          file:
+            path: /home/<user_of_master1>/.kube
+            state: directory
+            mode: '0755'
+
+        - name: Copy file with owner and permissions
+          become: yes
+          become_method: sudo
+          copy:
+            src: /etc/kubernetes/admin.conf
+            dest: /home/<user_of_master1>/.kube/config
+            owner: <user_of_master1>
+            group: <user_of_master1>
+            mode: '0600'
+            remote_src: yes
+        
+        - name: Launch script to join the cluster
+          shell: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  
+
+    - hosts: <master2 in inventory>
+      become: yes
+      become_method: enable
+      tasks:
+        - name: Copy file token and discovery on worker
+          copy:
+            src: /tmp/certificate_key/<user_of_master1>/tmp/certificate_key
+            dest: /tmp/certificate_key
+            owner: <user_of_master2>
+            group: <user_of_master2>
+            mode: '0644'
+            remote_src: no
+
+        - name: Copy file token and discovery on worker
+          copy:
+            src: /tmp/master_token/<user_of_master1>/tmp/master_token
+            dest: /tmp/master_token
+            owner: <user_of_master2>
+            group: <user_of_master2>
+            mode: '0644'
+            remote_src: no
+
+        - name: Copy file token and discovery on worker
+          copy:
+            src: /tmp/master_discovery/<user_of_master1>/tmp/master_discovery
+            dest: /tmp/master_discovery
+            owner: <user_of_master2>
+            group: <user_of_master2>
+            mode: '0644'
+            remote_src: no
+
+        - name: Launch script to join the cluster
+          become: yes
+          become_method: sudo
+          shell: kubeadm join <IP of master 1>:<port> --token $(cat /tmp/master_token) --discovery-token-ca-cert-hash sha256:$(cat /tmp/master_discovery) --control-plane --certificate-key $(cat /tmp/certificate_key)
+
+        - name: Remove the certificate_key
+          become: yes
+          become_method: sudo
+          file:
+            path: /tmp/certificate_key
+            state: absent
+        
+        - name: Create a directory if it does not exist
+          file:
+            path: /home/<user_of_master2>/.kube
+            state: directory
+            mode: '0755'
+
+        - name: Copy file with owner and permissions
+          become: yes
+          become_method: sudo
+          copy:
+            src: /etc/kubernetes/admin.conf
+            dest: /home/<user_of_master2>/.kube/config
+            owner: <user_of_master2>
+            group: <user_of_master2>
+            mode: '0600'
+            remote_src: yes
