@@ -1,0 +1,10 @@
+FROM centos
+
+USER root
+RUN yum update -yq
+RUN yum install python3 python3-pip -qy
+RUN pip3 install ansible
+RUN yum update -y && yum install openssh-server openssh-clients -y
+RUN ssh-keygen -q -t rsa -N '' -f /root/.ssh/id_rsa
+
+
