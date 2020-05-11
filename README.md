@@ -1,33 +1,53 @@
 # Welcome to Livefox WebApp!
 
+
+
+![rasp](https://raw.githubusercontent.com/iiiypuk/rpi-icon/master/256.png) ![enter image description here](https://laurent-dechoux.fr/static/img/kub_256.33b292b.png)
+
+
 Please use this instructions as a guide to understand and deploy this webapp based on microservices infrastructure
 
 
 # Microservices
 
- - Config-server
- - Eureka-server
- - Zuul-server
- - SpringAdmin-server
+ - MySQL-server
  - Microservice video
  - ClientUI
+ 
 
-## Install and Run
+## Description MySQL-server
+Use as a MySQL database, this Docker image build and fill the livefoxdb with data
 
-**You have to run in this order because they all depend on Config-server and Eureka-server**
+ - port:3306
+ - Docker image :[livefox/mysql-server](https://hub.docker.com/repository/docker/livefox/mysql)
+
+## Description Microservice Video
+Use to fetch video's data in the MYSQL database
+
+- app name: microservice-video 
+ - port: 8082
+ - Docker image: [livefox/mvideo-client](https://hub.docker.com/repository/docker/livefox/mvideo-client)
+
+## Description ClientUI
+Use to display Application microservices like Mvideo, Display alos the HomePage
+
+- app name: clientui 
+ - port: 8080
+ - Docker image: [livefox/clientui-client](https://hub.docker.com/repository/docker/livefox/clientui-client)
+
+
+
+
+# Install and Run
 
 Normally all **.jar** files are in ../target/*.jar
 All docker images are available in [Docker Hub ](https://hub.docker.com/)
 
-You can use the docker-compose in the root directory as follow:
 
-    docker-compose up
+To build a Cluster, you can use [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [MiniKube](https://kubernetes.io/fr/docs/setup/learning-environment/minikube/)
 
+Then you can use the deployment.yaml file in root directory:
 
-## Setup Kubernetes
+    kubectl apply -f deployment.yaml
 
-You can follow [this](https://github.com/bastienbosser/raspberry_project)  Kubernetes instructions to install it on Raspberry pies
-
-## Deploy
-
-You can add [this](https://github.com/NeopixNG/livefox) files to deploy in your kubernetes cluster
+That's it, Enjoy !
