@@ -25,7 +25,7 @@ Use as a MySQL database, this Docker image build and fill the livefoxdb with dat
 Use to fetch video's data in the MYSQL database
 
 - app name: microservice-video 
- - port: 8082
+ - port: 9001
  - Docker image: [livefox/mvideo-client](https://hub.docker.com/repository/docker/livefox/mvideo-client)
 
 ## Description ClientUI
