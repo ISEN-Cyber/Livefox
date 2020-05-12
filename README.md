@@ -19,7 +19,7 @@ Please use this instructions as a guide to understand and deploy this webapp bas
 Use as a MySQL database, this Docker image build and fill the livefoxdb with data
 
  - port:3306
- - Docker image :[livefox/mysql-server](https://hub.docker.com/repository/docker/livefox/mysql)
+ - Docker image :[livefox/mysql](https://hub.docker.com/repository/docker/livefox/mysql)
 
 ## Description Microservice Video
 Use to fetch video's data in the MYSQL database
