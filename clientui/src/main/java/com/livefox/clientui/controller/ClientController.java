@@ -22,8 +22,8 @@ public class ClientController {
     @RequestMapping("/")
     public String home(Model model){
         List<VideoBean> videos= videoProxy.listVideo();
-        model.addAttribute("videos",videos);
+        model.addAttribute("videos", videos);
         log.info("Request home page");
-        return"Home";
+        return "Home";
     }
 }

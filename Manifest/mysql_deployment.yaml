@@ -23,7 +23,6 @@ spec:
           image: livefox/mysql:latest
           ports:
             - containerPort: 3306
-
 ---
 apiVersion: v1
 kind: Service
