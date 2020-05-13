@@ -13,7 +13,7 @@ spec:
           serviceName: clientui-client
           servicePort: 8080
       
-      - path: /upload
+      path: /upload
         backend:
           serviceName: mupload-client
           servicePort: 9002
