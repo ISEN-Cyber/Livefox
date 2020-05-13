@@ -21,6 +21,7 @@ spec:
       containers:
         - name: clientui-client
           image: livefox/clientui-client:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
 ---
