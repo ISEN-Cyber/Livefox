@@ -21,6 +21,7 @@ spec:
       containers:
         - name: mysql
           image: livefox/mysql:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3306
 ---
