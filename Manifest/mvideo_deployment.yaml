@@ -21,6 +21,7 @@ spec:
       containers:
         - name: mvideo-client
           image: livefox/mvideo-client:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 9001
 
