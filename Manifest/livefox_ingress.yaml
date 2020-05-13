@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: livefox_deployment
+spec:
+    rules:
+    - http:
+        paths:
+        - path: /
+          backend:
+            serviceName: clientui-client
+            servicePort: 8080
+          
+        - path: /upload
+          backend:
+            serviceName: mupload-client
+            servicePort: 9002
