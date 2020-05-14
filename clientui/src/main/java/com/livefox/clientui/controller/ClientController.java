@@ -19,11 +19,17 @@ public class ClientController {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/")
+    @RequestMapping(value ={"/","home","index"})
     public String home(Model model){
         List<VideoBean> videos= videoProxy.listVideo();
         model.addAttribute("videos", videos);
         log.info("Request home page");
-        return "Home";
+        return "index";
+    }
+
+    @RequestMapping(value ={"upload"})
+    public String upload(Model model){
+        log.info("Request upload page");
+        return "upload";
     }
 }

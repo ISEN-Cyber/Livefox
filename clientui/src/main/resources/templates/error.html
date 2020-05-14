@@ -21,7 +21,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-white">
   <div class="container">
-    <a class="navbar-brand" th:href="Home.html"><img border="0" src="img/logo.png" width="30" height="30" alt="Livefox presentation"> LIVEFOX</a>
+    <a class="navbar-brand" th:href="home"><img border="0" src="img/logo.png" width="30" height="30" alt="Livefox presentation"> LIVEFOX</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="sr-only">Toggle navigation</span>
       <span class="navbar-toggler-icon"></span>
@@ -31,10 +31,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" th:href="Home"><em class="material-icons">home</em>Home</a>
+          <a class="nav-link" th:href="home"><em class="material-icons">home</em>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#Video"><em class="material-icons">play_arrow</em>Videos</a>
+          <a class="nav-link" href="video"><em class="material-icons">play_arrow</em>Videos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="upload"><em class="material-icons">backup</em>Upload</a>
         </li>
       </ul>
     </div>

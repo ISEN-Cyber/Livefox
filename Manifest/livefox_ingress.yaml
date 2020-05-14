@@ -3,15 +3,15 @@ kind: Ingress
 metadata:
   name: livefox_deployment
 spec:
-    rules:
+  rules:
     - http:
         paths:
-        - path: /
-          backend:
-            serviceName: clientui-client
-            servicePort: 8080
-          
-        - path: /upload
-          backend:
-            serviceName: mupload-client
-            servicePort: 9002
+          - path: /
+            backend:
+              serviceName: clientui-client
+              servicePort: 8080
+
+          - path: /upload
+            backend:
+              serviceName: mupload-client
+              servicePort: 9002

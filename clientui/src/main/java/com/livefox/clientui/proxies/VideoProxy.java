@@ -26,5 +26,4 @@ public interface VideoProxy {
     @PutMapping(value = "/video/update/{id}")
     public void updateVideo (@RequestBody VideoBean video);
 
-
 }

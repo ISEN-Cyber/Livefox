@@ -67,7 +67,8 @@
 			<version>RELEASE</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+
+    </dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
