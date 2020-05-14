@@ -24,7 +24,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 9002
-
+          volumeMounts:
+          - name: livefox-pv
+            mountPath: /livefox/video
+      volumes:
+      - name: livefox-pv
+        persistentVolumeClaim:
+          claimName: livefox-pv-claim
 ---
 apiVersion: v1
 kind: Service
