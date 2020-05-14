@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: livefox_deployment
+  name: livefox
 spec:
   rules:
     - http:
