@@ -2,7 +2,7 @@
 
 ### Setup Local VMs K8s Cluster Multi-masters
 
-First, you should create a NatNetwork for the cluster. In VirtualBox, go to Preferences >> Network >> create NatNetwork 
+First, you should create a NatNetwork for the cluster. In VirtualBox, go to Preferences >> Network >> create NatNetwork
 ![](images/icon.png)
 
 You should have something like this:
@@ -19,10 +19,10 @@ Now, create 3 VM in VirtualBox: Master1, Master2 and Worker.
 
 #### Configurations Recommendations
 
-- I recommend at least 2048MB of RAM for the Master 1, it should be nice for Master 2 but 1024 should do the trick and 
+- I recommend at least 2048MB of RAM for the Master 1, it should be nice for Master 2 but 1024 should do the trick and
 for the worker 1024 should be enough.
 - Two CPU cores for Master1 and Master2 and one for Worker.
-- You can Install Master1 with Desktop for convenience, but it is not necessary and server type for Master2 and Worker 
+- You can Install Master1 with Desktop for convenience, but it is not necessary and server type for Master2 and Worker
 will be sufficient.
 - For the storage it depends on your needs, I personally recommend 15GB,10GB and 10GB.
 - Go to settings in each VM and change the network settings to:
@@ -47,15 +47,15 @@ Then, be Sure to have the config that follow in /etc/apt/sources.list
 
     deb http://deb.debian.org/debian buster-updates main
     deb-src http://deb.debian.org/debian buster-updates main
-    
-Go Back to virtual box preferences >> Network > rightclick k8sNetwork edit > Port Forwarding and you can setup something like 
+
+Go Back to virtual box preferences >> Network > rightclick k8sNetwork edit > Port Forwarding and you can setup something like
 that to communicate with the host machine, there I have enable ssh for the 3 VM.
 
 ![](images/portforward.png)
 
-Then, you can ssh like this: 
+Then, you can ssh like this:
 
-    ssh -p 2022 master1@127.0.0.1 
+    ssh -p 2022 master1@127.0.0.1
 
 ### Install docker
 
@@ -71,13 +71,13 @@ Here are the commands:
     sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian \ $(lsb_release -cs) \ stable"
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io
-    
+
 ### Install kubernetes
 
 You absolutely need to do the next command each time you boot or the cluster won’t be up.
 
     sudo swapoff -a
-    
+
 #### Basic installation
 
 For each VM, repeat this command:
@@ -111,8 +111,8 @@ Follow this command:
 
     kubeadm config images pull
     kubeadm init --control-plane-endpoint "myMaster1IP:6443" --upload-certs
-    
-You should get a result that looks like this. 
+
+You should get a result that looks like this.
 
     W0204 14:09:40.871050    5233 validation.go:28] Cannot validate kube-proxy config - no validator is available
     W0204 14:09:40.871181    5233 validation.go:28] Cannot validate kubelet config - no validator is available
@@ -205,17 +205,17 @@ Now, you should add a network pod.
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/nginx/mandatory.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/nginx/service-loadbalancer.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/nginx/mandatory.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/nginx/service-loadbalancer.yaml
 
 #### Secondly, install metallb
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/namespaces.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/metallb/metallb.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/namespaces.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/metallb/metallb.yaml
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-    
+
 Now, you should create your own metallb-config.yaml that will look like this:
 
     apiVersion: v1
@@ -233,18 +233,20 @@ Now, you should create your own metallb-config.yaml that will look like this:
 
 Replace the range of IP by your own free ip from the cluster network.
 
+    kubectl apply -f metallb-config.yaml
+
 #### To finish, deploy ingress and livefox
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/livefox/livefox-svc.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/livefox/livefox-deploy.yaml
-    kubectl apply -f https://github.com/bastienbosser/raspberry_project/blob/master/configuration_file/livefox/livefox-ingress.yaml
-    
+    kubectl apply -f https://github.com/ISEN-Livefox/Livefox/blob/bastien/configuration_file/livefox/livefox-svc.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-deploy.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-ingress.yaml
+
 Now, execute this command to know your external ip:
 
     kubectl get services --all-namespaces
-    
+
 You should get a feedback that looks like this.  
 
 ![](images/services.png)
@@ -254,8 +256,3 @@ Here, the externalIP is 10.0.2.10.
 You should set a new rule in VirtualBox >> Preferences >> Network (K8SNetwork) >> Modifie >> PortForwarding >> new rule.
 
 ![](images/add_rule.png)
-
-
-
-
-
