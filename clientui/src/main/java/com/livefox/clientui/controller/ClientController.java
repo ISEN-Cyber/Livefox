@@ -26,10 +26,4 @@ public class ClientController {
         log.info("Request home page");
         return "index";
     }
-
-    @RequestMapping(value ={"upload"})
-    public String upload(Model model){
-        log.info("Request upload page");
-        return "upload";
-    }
 }
