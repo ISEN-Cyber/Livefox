@@ -9,10 +9,6 @@ picturePath CHAR(200),
 PRIMARY KEY(id));
 
 
-INSERT INTO video VALUES(1,"Video drole","video drole path","pictDrole.jpg");
-INSERT INTO video VALUES(2,"Video triste","video triste path","pictTriste.jpg");
-INSERT INTO video VALUES(3,"Video romantique","video romantique path","pictRomantique.jpg");
-INSERT INTO video VALUES(4,"Video sympa","video sympa path","pictSympa.jpg");
-INSERT INTO video VALUES(5,"Video horreur","video horreur path","pictHorreur.jpg");
+INSERT INTO video VALUES(1,"fail_army","/livefox/video/fail_army.mp4","/livefox/img/fail_army.jpg");
 
 SELECT * FROM video;

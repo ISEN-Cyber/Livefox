@@ -28,6 +28,19 @@ Use to fetch video's data in the MYSQL database
  - port: 9001
  - Docker image: [livefox/mvideo-client](https://hub.docker.com/repository/docker/livefox/mvideo-client)
 
+## Description Microservice Upload
+Use to upload file in the shared volume inside kubernetes
+
+ - port:9002
+ - Docker image :[livefox/mupload-client](https://hub.docker.com/repository/docker/livefox/mupload-client)
+
+## Description Microservice Player
+Use to read MP4 Files in the shared volume
+
+- app name: microservice-video 
+ - port: 9003
+ - Docker image: [livefox/mplayer-client](https://hub.docker.com/repository/docker/livefox/mplayer-client)
+
 ## Description ClientUI
 Use to display Application microservices like Mvideo, Display alos the HomePage
 
