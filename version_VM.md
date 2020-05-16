@@ -66,9 +66,17 @@ Else you can do it manually: https://docs.docker.com/engine/install/debian/
 Here are the commands:
 
     sudo apt-get update
-    sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ gnupg-agent \ software-properties-common
+    sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg-agent \
+      software-properties-common
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-    sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian \ $(lsb_release -cs) \ stable"
+    sudo add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/debian \
+      $(lsb_release -cs) \
+      stable"
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io
 
@@ -199,7 +207,7 @@ Now, you should add a network pod.
 
     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-### Deploy Livefox
+### Deploy Livefox (first version)
 
 #### First, install nginx ingress controller
 
