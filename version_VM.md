@@ -247,7 +247,7 @@ Replace the range of IP by your own free ip from the cluster network.
 
 Follow this command:
 
-    kubectl apply -f https://github.com/ISEN-Livefox/Livefox/blob/bastien/configuration_file/livefox/livefox-svc.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-svc.yaml
     kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-deploy.yaml
     kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-ingress.yaml
 
