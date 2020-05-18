@@ -1,2 +1,33 @@
-##Change the hostname
+# Change the hostname
+
+## Modify the hosts file
+
+On your computer, you will need to modify the hosts file.
+You can find it at the path C:\Windows\System32\drivers\etc.
+
+You have to enter the 
+
+## Change the ingress
+
+Your ingress.yaml find should have a host rule in which you specify the hostname of your application
+(see below).
+
+    apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    metadata:
+      name: ingress-livefox
+    spec:
+      rules:
+      - host: example.com
+        http:
+          paths:
+          - path: /
+            backend:
+              serviceName: clientui-client
+              servicePort: 8080
+          - path: /upload
+            backend:
+              serviceName: mupload-client
+              servicePort: 9002
+
 
