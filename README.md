@@ -11,6 +11,7 @@ Please use this instructions as a guide to understand and deploy this webapp bas
 # Microservices
 
  - MySQL-server
+ - Microservice upload
  - Microservice video
  - ClientUI
  
