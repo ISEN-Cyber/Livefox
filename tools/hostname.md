@@ -5,7 +5,7 @@
 On your computer, you will need to modify the hosts file.
 You can find it at the path C:\Windows\System32\drivers\etc.
 
-You have to enter the 
+You have to enter the
 
 ## Change the ingress
 
@@ -29,5 +29,3 @@ Your ingress.yaml find should have a host rule in which you specify the hostname
             backend:
               serviceName: mupload-client
               servicePort: 9002
-
-
