@@ -213,15 +213,15 @@ Now, you should add a network pod.
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/nginx/mandatory.yaml
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/nginx/service-loadbalancer.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/nginx/mandatory.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/nginx/service-loadbalancer.yaml
 
 #### Secondly, install metallb
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/namespaces.yaml
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/metallb/metallb.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/namespaces.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/metallb/metallb.yaml
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
 Now, you should create your own metallb-config.yaml that will look like this:
@@ -247,9 +247,9 @@ Replace the range of IP by your own free ip from the cluster network.
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-svc.yaml
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-deploy.yaml
-    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/configuration_file/livefox/livefox-ingress.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/livefox/livefox-svc.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/livefox/livefox-deploy.yaml
+    kubectl apply -f https://raw.githubusercontent.com/ISEN-Livefox/Livefox/bastien/version_VM/config_file_VM/livefox/livefox-ingress.yaml
 
 Now, execute this command to know your external ip:
 
