@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: livefox-deploy
+  labels:
+    app: livefox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: livefox
+  template:
+    metadata:
+      labels:
+        app: livefox
+      annotations:
+        io.kubernetes.cri.untrusted-workload: "true"
+    spec:
+      containers:
+      - name: livefox
+        image: neopix/livefox:litev2
+        ports:
+         - containerPort: 80
+---
