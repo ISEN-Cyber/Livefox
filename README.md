@@ -120,7 +120,15 @@ kubectl create -f https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-cpu.yaml
 kubectl create -f https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-memory.yaml
 ```
 
-Now look if all run
+Wait few seconds, and look if all run:
 ```
 watch kubectl get hpa,pods
+```
+You have to see something like that:
+```
+NAME                                                 REFERENCE                   TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/livefox-cpu      Deployment/livefox-deploy   1%/50%    1         5         1          3m22s
+horizontalpodautoscaler.autoscaling/livefox-memory   Deployment/livefox-deploy   28%/50%   1         5         1          3m15s                                   
+NAME                                  READY   STATUS    RESTARTS   AGE
+pod/livefox-deploy-6678f47858-6przn   1/1     Running   0          4m14s    
 ```
