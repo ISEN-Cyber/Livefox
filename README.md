@@ -22,7 +22,7 @@ Then, you have to edit the metrics-server.yaml file.
 vi metrics-server.yaml
 ```
 
-Go down to deployment level, and replace it by:
+Go down to the deployment level, and replace it by:
 
 ```
 apiVersion: apps/v1
