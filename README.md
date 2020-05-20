@@ -73,3 +73,19 @@ Now, look if your metrics-server run:
 
 ```
 kubectl get pods --all-namespaces
+```
+
+Wait few seconds and try to type this command to look if your metrics-server is up.
+```
+kubectl top nodes
+```
+
+Step 2: Limit your deploy
+---
+
+We have to limit the use of cpu and memory.
+
+if you type this command you can see the description od the deploy.
+```
+kubectl describe deploy livefox-deploy
+```
