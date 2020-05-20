@@ -116,8 +116,10 @@ Step 3: deploy hpa
 For the last step you have to deploy your horizontal pods autoscaler
 
 ```
-kubectl create -f https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-cpu.yaml
-kubectl create -f https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-memory.yaml
+wget https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-cpu.yaml
+wget https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-memory.yaml
+kubectl create -f hpa-cpu.yaml
+kubectl create -f hpa-memory.yaml
 ```
 
 Wait few seconds, and look if all run:
