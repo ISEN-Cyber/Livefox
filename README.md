@@ -5,12 +5,12 @@ Step 1: Metrics server
 ---
 
 To begin, you have to install a metrics server in your kubernetes cluster to recover data like the consumption of the cpu or the memory.
-To do that, you need to enter the following command:
+To do that, you need to execute this command:
 ```
 kubectl apply -f https://github.com/ISEN-Livefox/Livefox/blob/theo/metrics-server.yaml
 ```
 
-Or to execute this one:
+Or to enter all these ones:
 ```
 wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
 mv components.yaml metrics-server.yaml
