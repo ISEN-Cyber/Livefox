@@ -85,7 +85,11 @@ Step 2: Limit your deploy
 
 We have to limit the use of cpu and memory.
 
-if you type this command you can see the description od the deploy.
+If you type this command you can see the description of the deploy.
 ```
 kubectl describe deploy livefox-deploy
+```
+You have to edit livefox-deploy:
+```
+kubectl edit deploy livefox-deploy
 ```
