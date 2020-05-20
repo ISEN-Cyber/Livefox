@@ -8,20 +8,20 @@ To begin, you have to install a metrics server in your kubernetes cluster to rec
 
 To do that, execute the following commands:
 
-...
+'''
 wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
 mv components.yaml metrics-server.yaml
-...
+'''
 
 You have to edit the metrics-server.yaml file.
 
-...
+'''
 vi metrics-server.yaml
-...
+'''
 
 Go down to deployment level, and replace it by:
 
-...
+'''
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -67,4 +67,4 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
         kubernetes.io/arch: "amd64"
-...
+'''
