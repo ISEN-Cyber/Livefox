@@ -5,18 +5,18 @@ Step 1: Metrics server
 ---
 
 To begin, you have to install a metrics server in your kubernetes cluster to recover data like the consumption of the cpu or the memory.
-To do that:
+To do that, you need to enter the following command:
 ```
 kubectl apply -f https://github.com/ISEN-Livefox/Livefox/blob/theo/metrics-server.yaml
 ```
-Or execute the following commands:
 
+Or to execute this one:
 ```
 wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
 mv components.yaml metrics-server.yaml
 ```
 
-You have to edit the metrics-server.yaml file.
+Then, you have to edit the metrics-server.yaml file.
 
 ```
 vi metrics-server.yaml
@@ -91,16 +91,16 @@ Step 2: Limit your deploy
 
 We have to limit the use of cpu and memory.
 
-If you type this command you can see the description of the deploy.
+If you type the next command, you can see the description of the deployment.
 ```
 kubectl describe deploy livefox-deploy
 ```
-You have to edit livefox-deploy:
+To edit livefox-deploy, you need to enter :
 ```
 kubectl edit deploy livefox-deploy
 ```
 
-Just after container write: ender `terminationMessagePolicy: File`
+Just after container write: write `terminationMessagePolicy: File`
 ```
 resources:
   limits:
@@ -113,7 +113,7 @@ resources:
 Step 3: deploy hpa
 ---
 
-For the last step you have to deploy your horizontal pods autoscaler
+For the last step, you have to deploy your horizontal pods autoscaler
 
 ```
 wget https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-cpu.yaml
@@ -134,7 +134,7 @@ horizontalpodautoscaler.autoscaling/livefox-memory   Deployment/livefox-deploy  
 NAME                                  READY   STATUS    RESTARTS   AGE
 pod/livefox-deploy-6678f47858-6przn   1/1     Running   0          4m14s    
 ```
-If you want to test you can connect in your pods with this commands:
+If you want to test, you can connect it in your pods with this commands:
 ```
 kubectl -it exec livefox-deploy-6678f47858-6przn -- sh
 ```
