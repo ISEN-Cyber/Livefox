@@ -5,8 +5,11 @@ Step 1: Metrics server
 ---
 
 To begin, you have to install a metrics server in your kubernetes cluster to recover data like the consumption of the cpu or the memory.
-
-To do that, execute the following commands:
+To do that:
+```
+kubectl apply -f https://github.com/ISEN-Livefox/Livefox/blob/theo/metrics-server.yaml
+```
+Or execute the following commands:
 
 ```
 wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
@@ -68,7 +71,10 @@ spec:
         kubernetes.io/os: linux
         kubernetes.io/arch: "amd64"
 ```
-
+deploy metrics-server.yaml:
+```
+kubectl apply -f metrics-server.yaml
+```
 Now, look if your metrics-server run:
 
 ```
@@ -92,4 +98,29 @@ kubectl describe deploy livefox-deploy
 You have to edit livefox-deploy:
 ```
 kubectl edit deploy livefox-deploy
+```
+
+Just after container write:
+```
+resources:
+  limits:
+    memory: "500Mi"
+  requests:
+    memory: "50Mi"
+    cpu: "100m"
+```
+
+Step 3: deploy hpa
+---
+
+For the last step you have to deploy your horizontal pods autoscaler
+
+```
+kubectl create -f https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-cpu.yaml
+kubectl create -f https://github.com/ISEN-Livefox/Livefox/blob/theo/hpa-memory.yaml
+```
+
+Now look if all run
+```
+watch kubectl get hpa,pods
 ```
