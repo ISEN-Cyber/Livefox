@@ -134,3 +134,8 @@ horizontalpodautoscaler.autoscaling/livefox-memory   Deployment/livefox-deploy  
 NAME                                  READY   STATUS    RESTARTS   AGE
 pod/livefox-deploy-6678f47858-6przn   1/1     Running   0          4m14s    
 ```
+If you want to test you can connect in your pods with this commands:
+```
+kubectl -it exec livefox-deploy-6678f47858-6przn -- sh
+```
+And install stress with: `apt-get install stress`
