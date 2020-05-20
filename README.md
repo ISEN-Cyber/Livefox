@@ -100,7 +100,7 @@ You have to edit livefox-deploy:
 kubectl edit deploy livefox-deploy
 ```
 
-Just after container write:
+Just after container write: ender `terminationMessagePolicy: File`
 ```
 resources:
   limits:
