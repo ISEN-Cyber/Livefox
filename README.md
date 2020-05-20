@@ -139,3 +139,5 @@ If you want to test you can connect in your pods with this commands:
 kubectl -it exec livefox-deploy-6678f47858-6przn -- sh
 ```
 And install stress with: `apt-get install stress`
+example to test hpa-memory: ` stress --vm 1 --vm-bytes 100M`
+If you want to see all commands ` stress --help`
