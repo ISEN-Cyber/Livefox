@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: mupload-client
-          image: livefox/mupload-client:latest
+          image: livefox/mupload-client:arm
           imagePullPolicy: Always
           ports:
             - containerPort: 9002
