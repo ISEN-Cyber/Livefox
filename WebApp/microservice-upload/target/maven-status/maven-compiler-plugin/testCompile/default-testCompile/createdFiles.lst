@@ -1,0 +1,3 @@
+com\example\uploadingfiles\FileUploadIntegrationTests.class
+com\example\uploadingfiles\FileUploadTests.class
+com\example\uploadingfiles\storage\FileSystemStorageServiceTests.class

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mvideo-client
+  labels:
+    app: mvideo-client
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mvideo-client
+
+  template:
+    metadata:
+      labels:
+        app: mvideo-client
+
+    spec:
+      containers:
+        - name: mvideo-client
+          image: livefox/mvideo-client:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9001
+          volumeMounts:
+            - name: livefox-pv
+              mountPath: /livefox
+      volumes:
+        - name: livefox-pv
+          persistentVolumeClaim:
+            claimName: livefox-pv-claim
+
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mvideo-client
+  labels:
+    app: mvideo-client
+
+spec:
+  ports:
+    - port: 9001
+      protocol: TCP
+  selector:
+    app: mvideo-client

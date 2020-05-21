@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\ask",
+    "\\src\\main\\java\\com\\ask\\home",
+    "\\src\\main\\java\\com\\ask\\home\\videostream",
+    "\\src\\main\\java\\com\\ask\\home\\videostream\\constants",
+    "\\src\\main\\java\\com\\ask\\home\\videostream\\controller",
+    "\\src\\main\\java\\com\\ask\\home\\videostream\\service"
+  ],
+  "PreviewInSolutionExplorer": false
+}
