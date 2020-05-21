@@ -1,0 +1,37 @@
+---
+    - hosts: <workers in inventory>
+      become: yes
+      become_method: enable
+      tasks:
+        - name: Delete file /tmp/discovery
+          file:
+            path: /tmp/master_discovery
+            state: absent
+
+        - name: Delete file /tmp/token
+          file:
+            path: /tmp/master_token
+            state: absent
+
+        - name: Copy file token and discovery on worker
+          copy:
+            src: /tmp/master_token/<username of master 1>/tmp/master_token
+            dest: /tmp/master_token
+            owner: <same username for all worker>
+            group: <same username for all worker>
+            mode: '0644'
+            remote_src: no
+
+        - name: Copy file token and discovery on worker
+          copy:
+            src: /tmp/master_discovery/<username of master 1>/tmp/master_discovery
+            dest: /tmp/master_discovery
+            owner: <same username for all worker>
+            group: <same username for all worker>
+            mode: '0644'
+            remote_src: no
+
+        - name: Launch script to join the cluster
+          become: yes
+          become_method: sudo
+          shell: kubeadm join <IP of master 1>:<port> --token $(cat /tmp/master_token) --discovery-token-ca-cert-hash sha256:$(cat /tmp/master_discovery)

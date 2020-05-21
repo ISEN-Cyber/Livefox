@@ -1,0 +1,26 @@
+
+[all]
+master01
+master02
+worker01
+worker02
+
+[masters]
+master01
+master02
+
+[workers]
+worker01
+worker02
+
+[master1]
+master01 ansible_port=<port if needed> ansible_host=<IP for master1> ansible_user=<username of master1>
+
+[master2]
+master02 ansible_port=<port if needed> ansible_host=192.168.1.34 ansible_user=<username of master2>
+
+[worker]
+worker01 ansible_port=<port if needed> ansible_host=192.168.1.34 ansible_user=<username of worker1>
+
+[worker2]
+worker02 ansible_port=<port if needed> ansible_host=192.168.1.34 ansible_user=<username of worker2>

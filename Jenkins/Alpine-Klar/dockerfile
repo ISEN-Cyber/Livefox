@@ -1,0 +1,11 @@
+FROM alpine
+
+USER root
+RUN apk update
+RUN apk add --update --no-cache make musl-dev go git dep
+RUN apk update
+ENV GOPATH /go
+ENV PATH /go/bin:$PATH
+RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
+RUN go get github.com/optiopay/klar
+WORKDIR $GOPATH/src/github.com
