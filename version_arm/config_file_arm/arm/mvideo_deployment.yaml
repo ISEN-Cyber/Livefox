@@ -24,14 +24,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 9001
-          volumeMounts:
-            - name: livefox-pv
-              mountPath: /livefox
-      volumes:
-        - name: livefox-pv
-          persistentVolumeClaim:
-            claimName: livefox-pv-claim
-
 ---
 apiVersion: v1
 kind: Service
