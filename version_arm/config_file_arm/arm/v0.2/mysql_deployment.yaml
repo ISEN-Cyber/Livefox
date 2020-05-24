@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+
+  template:
+    metadata:
+      labels:
+        app: mysql
+
+    spec:
+      containers:
+        - name: mysql
+          image: livefox/mysql:armv0.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+
+spec:
+  ports:
+    - port: 3306
+      protocol: TCP
+  selector:
+    app: mysql
