@@ -15,7 +15,7 @@ spec:
         backend:
           serviceName: mupload-client
           servicePort: 9002
-      - path: /video
+      - path: /stream
         backend:
           serviceName: mplayer-client
           servicePort: 9003
