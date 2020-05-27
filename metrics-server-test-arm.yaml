@@ -83,7 +83,7 @@ spec:
         emptyDir: {}
       containers:
       - name: metrics-server
-        image: k8s.gcr.io/metrics-server-arm64:v0.3.6
+        image: k8s.gcr.io/metrics-server-arm:v0.3.6  
         imagePullPolicy: IfNotPresent
         args:
           - --cert-dir=/tmp
