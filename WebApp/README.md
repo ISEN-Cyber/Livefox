@@ -13,6 +13,7 @@ Please use this instructions as a guide to understand and deploy this webapp bas
  - MySQL-server
  - Microservice video
  - Microservice upload
+ - Microservice player
  - ClientUI
  
 
@@ -32,6 +33,7 @@ Use to fetch video's data in the MYSQL database
 ## Description Microservice Upload
 Use to upload file in the shared volume inside kubernetes
 
+- app name: microservice-upload
  - port:9002
  - Docker image :[livefox/mupload-client](https://hub.docker.com/repository/docker/livefox/mupload-client)
 
@@ -60,8 +62,8 @@ All docker images are available in [Docker Hub ](https://hub.docker.com/)
 
 To build a Cluster, you can use [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [MiniKube](https://kubernetes.io/fr/docs/setup/learning-environment/minikube/)
 
-Then you can use the deployment.yaml file in root directory:
+Then you can use the deployment file in version directory:
 
-    kubectl apply -f deployment.yaml
+    kubectl apply -f mysql_deployment.yaml && kubectl apply -f clientui_upload_player_video.yaml
 
 That's it, Enjoy !
