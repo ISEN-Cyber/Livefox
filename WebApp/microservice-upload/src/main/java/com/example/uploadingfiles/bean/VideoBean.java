@@ -3,13 +3,10 @@ package com.example.uploadingfiles.bean;
 public class VideoBean {
 
     private int id;
-
     private String name;
-
     private String path;
-
     private String picturePath;
-
+    
     public VideoBean() {
     }
 

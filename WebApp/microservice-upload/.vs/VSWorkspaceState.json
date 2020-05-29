@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\example",
+    "\\src\\main\\java\\com\\example\\uploadingfiles",
+    "\\src\\main\\resources",
+    "\\src\\main\\resources\\templates"
+  ],
+  "SelectedNode": "\\Dockerfile",
+  "PreviewInSolutionExplorer": false
+}

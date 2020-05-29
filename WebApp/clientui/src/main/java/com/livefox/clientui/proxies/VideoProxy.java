@@ -14,16 +14,7 @@ public interface VideoProxy {
     @GetMapping(value = "/video")
     List<VideoBean> listVideo();
 
-    @GetMapping(value = "/video/{id}")
-    VideoBean showVideo(@PathVariable("id") int id);
-
     @PostMapping(value = "/video/add")
     public void addVideo (@Valid @RequestBody VideoBean video);
-
-    @DeleteMapping(value = "/video/delete/{id]")
-    public void deleteVideo(@PathVariable int id);
-
-    @PutMapping(value = "/video/update/{id}")
-    public void updateVideo (@RequestBody VideoBean video);
 
 }
