@@ -1,0 +1,15 @@
+.lib{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.lib p {
+    font-size: 14px;
+    margin: 0 0 10px;
+    display: flex;
+    justify-content: center;
+    font-family: inherit;
+    color: darkslategray;
+}

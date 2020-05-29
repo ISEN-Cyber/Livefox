@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebApp",
+    "\\WebApp\\clientui",
+    "\\WebApp\\clientui\\src",
+    "\\WebApp\\clientui\\src\\main",
+    "\\WebApp\\clientui\\src\\main\\java",
+    "\\WebApp\\clientui\\src\\main\\java\\com",
+    "\\WebApp\\clientui\\src\\main\\java\\com\\livefox",
+    "\\WebApp\\clientui\\src\\main\\java\\com\\livefox\\clientui",
+    "\\WebApp\\clientui\\src\\main\\java\\com\\livefox\\clientui\\controller",
+    "\\WebApp\\clientui\\src\\main\\resources",
+    "\\WebApp\\clientui\\src\\main\\resources\\static"
+  ],
+  "SelectedNode": "\\WebApp\\clientui\\src\\main\\resources\\templates\\error.html",
+  "PreviewInSolutionExplorer": false
+}

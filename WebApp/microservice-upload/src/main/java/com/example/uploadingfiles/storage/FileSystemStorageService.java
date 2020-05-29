@@ -17,10 +17,12 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @Service
 public class FileSystemStorageService implements StorageService {
 
 	private final Path rootLocation;
+
 
 	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
@@ -30,6 +32,7 @@ public class FileSystemStorageService implements StorageService {
 	@Override
 	public void store(MultipartFile file) {
 		String filename = StringUtils.cleanPath(file.getOriginalFilename());
+
 		try {
 			if (file.isEmpty()) {
 				throw new StorageException("Failed to store empty file " + filename);

@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\src",
     "\\src\\main",
     "\\src\\main\\java",
     "\\src\\main\\java\\com",
-    "\\src\\main\\java\\com\\ask",
-    "\\src\\main\\java\\com\\ask\\home",
-    "\\src\\main\\java\\com\\ask\\home\\videostream",
-    "\\src\\main\\java\\com\\ask\\home\\videostream\\constants",
-    "\\src\\main\\java\\com\\ask\\home\\videostream\\controller",
-    "\\src\\main\\java\\com\\ask\\home\\videostream\\service"
+    "\\src\\main\\java\\com\\livefox",
+    "\\src\\main\\java\\com\\livefox\\mplayerclient",
+    "\\src\\main\\java\\com\\livefox\\mplayerclient\\controller",
+    "\\src\\main\\resources",
+    "\\src\\main\\resources\\templates"
   ],
+  "SelectedNode": "\\src\\main\\resources\\templates\\stream.html",
   "PreviewInSolutionExplorer": false
 }
