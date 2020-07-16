@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: mplayer-client
-          image: livefox/mplayer-client:latest
+          image: livefox/mplayer-client:arm
           imagePullPolicy: Always
           ports:
             - containerPort: 9003
