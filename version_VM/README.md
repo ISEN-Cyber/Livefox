@@ -1,7 +1,10 @@
 # Version with Virtual Machine
 
+
 ---
-This version was made because of covid-19 but does not correspond to the final version
+
+<span style="color:red">This version was made because of covid-19 but does not correspond to the final version</span>
+
 ---
 
 ### Setup Local VMs K8s Cluster Multi-masters
