@@ -1,13 +1,17 @@
 # Version with Virtual Machine
 
+---
+This version was made because of covid-19 but does not correspond to the final version
+---
+
 ### Setup Local VMs K8s Cluster Multi-masters
 
 First, you should create a NatNetwork for the cluster. In VirtualBox, go to Preferences >> Network >> create NatNetwork
-![](images/icon.png)
+![](/images/icon.png)
 
 You should have something like this:
 
-![](images/add_network.png)
+![](/images/add_network.png)
 
 You can change the name if you want, to do this just right click on your NatNetwork and on Properties.
 
@@ -15,7 +19,7 @@ Then Download Debian-iso: https://cdimage.debian.org/debian-cd/current/amd64/iso
 
 Now, create 3 VM in VirtualBox: Master1, Master2 and Worker.
 
-![](images/config_VM.png)
+![](/images/config_VM.png)
 
 #### Configurations Recommendations
 
@@ -27,7 +31,7 @@ will be sufficient.
 - For the storage it depends on your needs, I personally recommend 15GB,10GB and 10GB.
 - Go to settings in each VM and change the network settings to:
 
-![](images/network.png)
+![](/images/network.png)
 
 - I advise to use the same password for the 3 users if you want to use ansible.
 
@@ -51,7 +55,7 @@ Then, be Sure to have the config that follow in /etc/apt/sources.list
 Go Back to virtual box preferences >> Network > rightclick k8sNetwork edit > Port Forwarding and you can setup something like
 that to communicate with the host machine, there I have enable ssh for the 3 VM.
 
-![](images/portforward.png)
+![](/images/portforward.png)
 
 Then, you can ssh like this:
 
@@ -257,10 +261,10 @@ Now, execute this command to know your external ip:
 
 You should get a feedback that looks like this.  
 
-![](images/services.png)
+![](/images/services.png)
 
 Here, the externalIP is 10.0.2.10.
 
 You should set a new rule in VirtualBox >> Preferences >> Network (K8SNetwork) >> Modifie >> PortForwarding >> new rule.
 
-![](images/add_rule.png)
+![](/images/add_rule.png)
